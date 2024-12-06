@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML RPG Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><a href="index.html">SilveR</a></h1>
+            <div class="nav">
+                <ul>
+                    <li><a href="home.html">My Work</a></li>
+                    <li><a href="text.html">Text</a></li>
+                    <li><a href="game.html">Game</a></li>
+                    <li><a href="ppt.html">PPT</a></li>
+                    <li><a href="ScrollEvent.html">ScrollEvent</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="game" class="game-container">
+            <div id="nickname-prompt">
+                <label for="nickname">닉네임을 입력하세요:</label>
+                <input type="text" id="nickname" maxlength="10">
+                <button onclick="startGame()">시작</button>
+            </div>
+
+            <div id="gameplay" style="display: none;">
+                <h2 id="stage-title">스테이지 1</h2>
+                <p id="message"></p>
+                <div class="action-buttons">
+                    <button onclick="chooseAction('fight')">싸우기</button>
+                    <button onclick="chooseAction('run')">도망가기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let playerHp = 100;
+        let mobHp = 5;
+        let score = 0;
+        let currentStage = 1;
+
+        function startGame() {
+            const nickname = document.getElementById('nickname').value;
+            if (nickname.trim() === "") {
+                alert("닉네임을 입력하세요!");
+                return;
+            }
+
+            document.getElementById('nickname-prompt').style.display = 'none';
+            document.getElementById('gameplay').style.display = 'block';
+            document.getElementById('message').innerText = `${nickname}님, 스테이지 ${currentStage}에 오신 것을 환영합니다!`;
+        }
+
+        function chooseAction(action) {
+            const message = document.getElementById('message');
+            if (action === 'fight') {
+                mobHp -= 5;
+                score += 100;
+                if (mobHp <= 0) {
+                    message.innerText = "적을 처치했습니다! 스테이지를 완료했습니다.";
+                } else {
+                    playerHp -= 10;
+                    message.innerText = `적과 싸우는 중... 현재 체력: ${playerHp}`;
+                }
+            } else if (action === 'run') {
+                message.innerText = "당신은 도망쳤습니다!";
+            }
+        }
+    </script>
+</body>
+</html>

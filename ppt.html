@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPT Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><a href="index.html">SilveR</a></h1>
+            <div class="nav">
+                <ul>
+                    <li><a href="home.html">My Work</a></li>
+                    <li><a href="text.html">Text</a></li>
+                    <li><a href="game.html">Game</a></li>
+                    <li><a href="ppt.html">PPT</a></li>
+                    <li><a href="ScrollEvent.html">ScrollEvent</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="ppt-content">
+            <div class="ppt-background" onclick="nextSlide()">
+                <h2 id="ppt-title" style="font-size: 50px;">20115 오은석</h2>
+                <p id="ppt-text" style="font-size: 20px;">DTC 동아리 세특 과제</p>                              
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let slideIndex = 0; // 슬라이드 번호
+        const slides = [
+            {
+                title: "20115 오은석",
+                text: "DTC 동아리 세특 과제"
+            },
+            {
+                title: "html로 무엇을 만들었는가?",
+                text: "나만의 웹페이지 제작"
+            },
+            {
+                title: "무엇을 사용하였는가?",
+                text: "동아리에서 배웠던 기본적인 요소<br>태그나 클래스, 버튼, 하이퍼링크 등등"
+            },
+            {
+                title: "알게 된 점 / 느낀점 ",
+                text: "줄바꿈(br)은 쌍따옴표 안에 있어도 작동을 한다.<br>애니메이션을 살짝 넣어봤는데 상당히 재미있었다.<br>유튜브에서 보고 따라했는데 나름 만족한다."
+            },
+            {
+                title: "마지막으로 ",
+                text: "추가하거나 이렇게 하면 더 좋겠다 하는점 알려주세요!"
+            }
+        ];
+
+        function nextSlide() {
+            slideIndex++;
+            if (slideIndex >= slides.length) {
+                slideIndex = 0; // 끝에 도달하면 첫 번째 슬라이드로 돌아가게 설정
+            }
+
+            // 슬라이드 내용 변경
+            document.querySelector('#ppt-title').innerText = slides[slideIndex].title;
+            document.querySelector('#ppt-text').innerHTML = slides[slideIndex].text;
+        }
+    </script>
+</body>
+</html>
